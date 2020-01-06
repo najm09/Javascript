@@ -36,6 +36,12 @@
             todolist.appendChild(todo);
         }
 
+        button.addEventListener('click',function(){
+            while(todolist.firstChild){
+                todolist.removeChild(todolist.firstChild);
+            }
+        });
+
     </script>
 </body>
 </head>
