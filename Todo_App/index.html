@@ -8,31 +8,56 @@
 
 <style>
     body{
-        padding:15px ;
+        padding: 0 ;
+        box-sizing: border-box;
         background-color:#66CCFF;
         font-family: sans-serif;
     }
     #title{
         padding:10px ;
         font-size:35px ;
-        border:2px solid white ;
-        width:260px ;
+        font-style: arial;
+        color: darkgreen;
+        background-color:rgba(255 ,255 ,255,.5) ;
+        border:2px thick #4CAF50 ;
+        border-radius: 15px;
+        width: 99%;
     }
     #todo-header{
         font-size: 24px;
+       }
+    
+       input[type=text] {
+       border: none;
+       background-color:#66CCFF ;
+       border-bottom: 2px solid #4CAF50;
     }
     ul{
         list-style: none;
         padding-left: 0;
-        width: 250px;
     }
     li{
         color:#333;
         background-color:rgba(255 ,255 ,255,.5);
+        width: 260px;
         padding: 15px;
         margin-bottom: 15px;
         border-radius: 5px;
     }
+    button {
+        display: inline-block;
+        padding: 2px 8px;
+        font-size: 15px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        float:right;
+        }
 </style>
 
 </head>
@@ -47,8 +72,7 @@
     <ul>
             
     </ul>
-    <button id="clear">clear all</button>
-    
+    <button id="clear">clear all</button>  
     <script>
         var form = document.querySelector('form');
         var todolist = document.querySelector('ul');
