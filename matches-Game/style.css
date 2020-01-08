@@ -26,3 +26,10 @@ body {
   height: 150px;
   width: 150px;
 }
+.selected{
+  border: 5px solid blue;
+}
+.match{
+  border:5px solid red;
+  background-image: none !important;
+}

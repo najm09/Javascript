@@ -13,15 +13,38 @@ var cardsArray = [
     {    'name': 'Wordpress',    'img': 'https://github.com/robgmerrill/img/blob/master/wordpress-logo.png?raw=true',  },
   ];
 
-  var game = document.getElementById('game-board');
-  var grid = document.createElement('section');
-  grid.setAttribute('class','grid');
-  game.appendChild(grid);
+var gameGrid = cardsArray.concat(cardsArray);
 
-  for( i=0 ; i<cardsArray.length ; i++){
+gameGrid.sort(function(){
+    return 0.5-Math.random()
+})
+
+var game = document.getElementById('game-board');
+
+var grid = document.createElement('section');
+
+grid.setAttribute('class','grid');
+
+game.appendChild(grid);
+
+var count = 0;
+
+for( i=0 ; i<gameGrid.length ; i++){
       var card = document.createElement('div');
       card.classList.add('card');
-      card.dataset.name = cardsArray[i].name;
-      card.style.backgroundImage = url("${cardsArray[i]}.img");
+      card.dataset.name = gameGrid[i].name;
+      card.style.backgroundImage = `url(${gameGrid[i].img})`;
       grid.appendChild(card);
   };
+
+grid.addEventListener('click',function(event){
+    var clicked = event.target;
+    if(clicked.nodeName =='SECTION'){
+        return;
+    }
+
+    if(count<2){
+        count++;
+        clicked.classList.add('selected');
+    }
+});
