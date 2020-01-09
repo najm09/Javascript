@@ -27,7 +27,34 @@ grid.setAttribute('class','grid');
 
 game.appendChild(grid);
 
+var firstGuess = '';
+var secondGuess = '';
+
 var count = 0;
+
+var previousTarget = null;
+var delay = 1200;
+
+var match = function(){
+    var selected = document.querySelectorAll('.selected');
+
+    for(i =0 ; i<selected.length ; i++){
+        selected[i].classList.add('match');
+    }
+};
+
+var resetGuesses = function(){
+    count = 0;
+    firstGuess = '';
+    secondGuess = '';
+    previousTarget = null;
+
+    var selected = document.querySelectorAll('.selected');
+
+    for(i=0 ; i<selected.length ; i++){
+        selected[i].classList.remove('selected');
+    }
+};
 
 for( i=0 ; i<gameGrid.length ; i++){
       var card = document.createElement('div');
@@ -39,12 +66,29 @@ for( i=0 ; i<gameGrid.length ; i++){
 
 grid.addEventListener('click',function(event){
     var clicked = event.target;
-    if(clicked.nodeName =='SECTION'){
+    if(clicked.nodeName =='SECTION' || clicked == previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains('selected')){
         return;
     }
 
-    if(count<2){
-        count++;
-        clicked.classList.add('selected');
+    if(count <2){
+        count++
+
+        if(count == 1){
+            firstGuess = clicked.dataset.name;
+            clicked.classList.add('selected');
+        } else{
+            secondGuess = clicked.dataset.name;
+            clicked.classList.add('selected');
+        }
+
+        if(firstGuess!=='' && secondGuess!==''){
+            if(firstGuess === secondGuess){
+                setTimeout(match,delay);
+                setTimeout(resetGuesses,delay);
+            }else{
+                setTimeout(resetGuesses,delay);
+            }
+        }
+        previousTarget = clicked;
     }
 });
