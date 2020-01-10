@@ -1,4 +1,4 @@
-var cardsArray = [
+  var cardsArray = [
     {    'name': 'CSS',    'img': 'https://github.com/robgmerrill/img/blob/master/css3-logo.png?raw=true',  },
     {    'name': 'HTML',    'img': 'https://github.com/robgmerrill/img/blob/master/html5-logo.png?raw=true',  },
     {    'name': 'jQuery',    'img': 'https://github.com/robgmerrill/img/blob/master/jquery-logo.png?raw=true',  },
@@ -12,83 +12,87 @@ var cardsArray = [
     {    'name': 'Sublime',    'img': 'https://github.com/robgmerrill/img/blob/master/sublime-logo.png?raw=true',  },
     {    'name': 'Wordpress',    'img': 'https://github.com/robgmerrill/img/blob/master/wordpress-logo.png?raw=true',  },
   ];
+  var gameGrid = cardsArray.concat(cardsArray);
+  gameGrid.sort(function(){
+      return 0.5-Math.random();
+  });
+  var Game = document.getElementById('game-board');
+  var Grid = document.createElement('section');
+  Grid.setAttribute('class','grid');
+  Game.appendChild(Grid);
 
-var gameGrid = cardsArray.concat(cardsArray);
+  var count = 0;
+  var previousTarget = null;
+  var firstGuess = '';
+  var secondGuess = '';
+  var delay = 120;
 
-gameGrid.sort(function(){
-    return 0.5-Math.random()
-})
+  var resetGuesses = function(){
+      count = 0;
+      previousTarget = null;
+      firstGuess = '';
+      secondGuess = '';
 
-var game = document.getElementById('game-board');
+      var selected = document.querySelectorAll('.selected');
 
-var grid = document.createElement('section');
+      for(i=0 ; i<selected.length ; i++){
+          selected[i].classList.remove('selected');
+      }
+  }
 
-grid.setAttribute('class','grid');
-
-game.appendChild(grid);
-
-var firstGuess = '';
-var secondGuess = '';
-
-var count = 0;
-
-var previousTarget = null;
-var delay = 1200;
-
-var match = function(){
-    var selected = document.querySelectorAll('.selected');
-
-    for(i =0 ; i<selected.length ; i++){
-        selected[i].classList.add('match');
-    }
-};
-
-var resetGuesses = function(){
-    count = 0;
-    firstGuess = '';
-    secondGuess = '';
-    previousTarget = null;
-
-    var selected = document.querySelectorAll('.selected');
-
-    for(i=0 ; i<selected.length ; i++){
-        selected[i].classList.remove('selected');
-    }
-};
-
-for( i=0 ; i<gameGrid.length ; i++){
-      var card = document.createElement('div');
-      card.classList.add('card');
-      card.dataset.name = gameGrid[i].name;
-      card.style.backgroundImage = `url(${gameGrid[i].img})`;
-      grid.appendChild(card);
+  var match = function(){
+      var selected = document.querySelectorAll('.selected');
+      for(i=0 ; i<selected.length ; i++){
+          selected[i].classList.add('match');
+      }
   };
 
-grid.addEventListener('click',function(event){
-    var clicked = event.target;
-    if(clicked.nodeName =='SECTION' || clicked == previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains('selected')){
-        return;
-    }
+  for (i=0 ; i<gameGrid.length ; i++){
+      // create a div element and assign to variable card
+  var card = document.createElement('div');
+  // Apply a card class to that div
+  card.classList.add('card');
+  // Set the data-name attribute of the div to the cardsArray name
+  card.dataset.name = gameGrid[i].name;
 
-    if(count <2){
-        count++
+  // Create front of card
+  var front = document.createElement('div');
+  front.classList.add('front');
 
-        if(count == 1){
-            firstGuess = clicked.dataset.name;
-            clicked.classList.add('selected');
-        } else{
-            secondGuess = clicked.dataset.name;
-            clicked.classList.add('selected');
-        }
+  // Create back of card
+  var back = document.createElement('div');
+  back.classList.add('back');
+  back.style.backgroundImage = `url(${gameGrid[i].img})`;
 
-        if(firstGuess!=='' && secondGuess!==''){
-            if(firstGuess === secondGuess){
-                setTimeout(match,delay);
-                setTimeout(resetGuesses,delay);
-            }else{
-                setTimeout(resetGuesses,delay);
-            }
-        }
-        previousTarget = clicked;
-    }
-});
+  // Append card to grid
+  Grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+  }
+
+  Grid.addEventListener('click',function(event){
+      var clicked = event.target;
+
+      if(clicked.nodeName == 'SECTION' || clicked == previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains('selected')){
+          return;
+      }
+      if(count < 2){
+          count++;
+          if(count == 1){
+              firstGuess = clicked.parentNode.dataset.name;
+              clicked.parentNode.classList.add('selected');
+          }else{
+              secondGuess = clicked.parentNode.dataset.name;
+              clicked.parentNode.classList.add('selected');
+          }
+          if(firstGuess !== '' && secondGuess !== ''){
+              if(firstGuess==secondGuess){
+                  setTimeout (match,delay);
+                  setTimeout (resetGuesses,delay);
+              }else{
+                setTimeout (resetGuesses,delay);
+              }
+          }
+      }
+      previousTarget = clicked;
+  });
