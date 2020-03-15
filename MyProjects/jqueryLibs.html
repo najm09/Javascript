@@ -4,13 +4,27 @@
 <title>Jquery Intro</title>
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="jqueryFunctions.js"></script>
+<style>
+  .box{
+    background-color: black;
+    height: 160px;
+    width: 160px;
+    display: none;
+    margin-top: 15px;
+  }
+</style>
 
 </head>
 <body>
 <h1 id="head">this is heading </h1>
-<p>this is line of text</p>
+<p id="line">this is line of text</p>
 <p>this is another line of text</p>
-<button >Hide</button>
-
+<button id="hide">Hide</button>
+<button id="visible">show</button>
+<button id="toggle">toggle</button>
+<button id="fade">fadetoggle</button>
+<div class="box" id="first"></div>
+<div class="box" id="second"></div>
+<div class="box" id="third"></div><br>
 </body>
 </html>
