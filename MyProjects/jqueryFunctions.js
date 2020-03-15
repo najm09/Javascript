@@ -31,8 +31,16 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#fade").click(function(){
-    $("#first").fadeToggle();
-    $("#second").fadeToggle(2000);
-    $("#third").fadeToggle(3000);
+    $("#first").fadeToggle(3000);
+    $("#second").fadeToggle(1000);
+    $("#third").fadeToggle();
+  });
+});
+
+$(document).ready(function(){
+  $(function(){
+    $("#first").draggable();
+    $("#second").draggable();
+    $("#third").draggable();
   });
 });
