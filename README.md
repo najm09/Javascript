@@ -13,5 +13,7 @@ Projects based on Javascript
 
 
 3. MEMORY GAME : A tiny game of matching the cards.
+
                  • All things are just related to Id of the pictures under the hood
+
                  • Introduction to json files 
