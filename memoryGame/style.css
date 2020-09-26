@@ -6,7 +6,7 @@
 
 body {
   margin: 20px 0;
-  background: #6589F9;
+
 }
 
 .grid {
@@ -39,12 +39,11 @@ body {
 
 .front {
   z-index: 2;
-  background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
+  background: #009688 url('../img/question.gif') no-repeat center center / contain;
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: #6589F9;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -55,5 +54,6 @@ body {
 }
 
 .match .front {
-  background: #6589F9 !important;
+  background: white !important;
 }
+

@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-compatible" content="ie=edge">
-<title>Todo Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="ie=edge">
+    <title>Todo Tracker</title>
 
-<style>
-    body{
-        padding: 0 ;
-        box-sizing: border-box;
-        background-color:#66CCFF;
-        font-family: sans-serif;
-        position: relative;
-    }
-    #title{
-        padding:10px ;
-        font-size:35px ;
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+            position: relative;
+            text-align: center;
+        }
 
-        font-style: arial;
-        color: darkgreen;
-        background-color:rgba(255 ,255 ,255,.5) ;
-        border:2px thick #4CAF50 ;
-        border-radius: 15px;
-        width: 99%;
+        #list {
+            border: 2px thin black;
+            border-radius: 5px;
+            margin-top: 12px;
+            padding: 12px;
 
-        border:2px thick #4CAF50 ;
-        border-radius: 15px;
-        width:99% ;
+        }
 
-    }
-    #todo-header{
-        font-size: 24px;
-       }
-    
-       input[type=text] {
-       border: none;
-       background-color:#66CCFF ;
-       border-bottom: 2px solid #4CAF50;
-    }
-    ul{
-        list-style: none;
-        padding-left: 0;
-    }
-    li{
-        color:#333;
-        background-color:rgba(255 ,255 ,255,.5);
-        width: 260px;
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-    }
-    button {
-        display: inline-block;
-        padding: 2px 8px;
-        font-size: 15px;
-        cursor: pointer;
-        outline: none;
-        color: #fff;
-        border: none;
-        background-color: #4CAF50;
-        border-radius: 15px;
-        float: right;
-    }
-</style>
+        #Body {
+            
+            margin-left: 400px;
+            padding: 12px;
+            border-radius: 10px;
+            width: 500px;
+        }
+
+        #title {
+            padding: 10px;
+            font-size: 35px;
+            font-style: arial;
+        }
+
+        #todo-header {
+            font-size: 34px;
+        }
+
+        input[type=text] {
+            border: 3px thin;
+            border-radius: 5px;
+            font-size: 24px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            background-color: #37474f;
+            display: inline-block;
+            color: white;
+            width: fit-content;
+            padding: 15px;
+            margin-right:8px ;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #37474f;
+            border-radius: 5px;
+            color: white;
+            font-size: 19px;
+            cursor: pointer;
+        }
+    </style>
 
 </head>
 
 <body>
-    <h1 id="title">Todo Tracker</h1> 
-    <form>
-        <input type="text" id="user-todo" placeholder="New Todo" required>
-    </form>
+    <div id="Body">
+        <div>
+            <h1 id="title">Todo Tracker</h1>
+        </div>
+        <form>
+            <input type="text" id="user-todo" placeholder="New Todo" required>
+            <button id="add">+</button>
+            <button id="clear">Reset</button>
+        </form>
+        <div id="list">
+            <span id="todo-header"></span>
+            <ul></ul>
+        </div>
+    </div>
 
-    <h2 id="todo-header">Todos</h2>
-    <ul>
-            
-    </ul>
-    <button id="clear">clear all</button>
-    
     <script src="main.js"></script>
 </body>
+
 </html>
