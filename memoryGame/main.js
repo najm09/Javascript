@@ -27,26 +27,6 @@ var firstGuess = '';
 var secondGuess = '';
 var delay = 120;
 
-var resetGuesses = function () {
-    count = 0;
-    previousTarget = null;
-    firstGuess = '';
-    secondGuess = '';
-
-    var selected = document.querySelectorAll('.selected');
-
-    for (i = 0; i < selected.length; i++) {
-        selected[i].classList.remove('selected');
-    }
-}
-
-var match = function () {
-    var selected = document.querySelectorAll('.selected');
-    for (i = 0; i < selected.length; i++) {
-        selected[i].classList.add('match');
-    }
-};
-
 for (i = 0; i < gameGrid.length; i++) {
     // create a div element and assign to variable card
     var card = document.createElement('div');
@@ -70,6 +50,27 @@ for (i = 0; i < gameGrid.length; i++) {
     card.appendChild(back);
 }
 
+var resetGuesses = function () {
+    count = 0;
+    previousTarget = null;
+    firstGuess = '';
+    secondGuess = '';
+
+    var selected = document.querySelectorAll('.selected');
+
+    for (i = 0; i < selected.length; i++) {
+        selected[i].classList.remove('selected');
+    }
+}
+
+var match = function () {
+    var selected = document.querySelectorAll('.selected');
+    for (i = 0; i < selected.length; i++) {
+        selected[i].classList.add('match');
+    }
+};
+
+
 Grid.addEventListener('click', function (event) {
     var clicked = event.target;
 
@@ -82,11 +83,11 @@ Grid.addEventListener('click', function (event) {
         if (count == 1) {
             firstGuess = clicked.parentNode.dataset.name;
             clicked.parentNode.classList.add('selected');
-        } else {
+        }else {
             secondGuess = clicked.parentNode.dataset.name;
             clicked.parentNode.classList.add('selected');
         }
-        if (firstGuess !== '' && secondGuess !== '') {
+        if(firstGuess !== '' && secondGuess !== '') {
             if (firstGuess == secondGuess) {
                 setTimeout(match, delay);
                 setTimeout(resetGuesses, delay);

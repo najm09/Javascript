@@ -13,11 +13,7 @@ var input = document.getElementById('user-todo');
 //an empty array. 
 
 var todosArray = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-
-
-
 localStorage.setItem('todos', JSON.stringify(todosArray));
-
 // Declare a variable storage that contains all the information in local storage .
 // we will assign to storage JSON.parse() method that converts string from local 
 // storage into data we can access with Javascript.
@@ -43,7 +39,7 @@ form.addEventListener('submit', function (e) {
 });
 
 var todoMaker = function (text) {
-    document.getElementById("todo-header").innerHTML="Todos<hr/>";
+    document.getElementById("todo-header").innerHTML="Todos<br/>";
     var todo = document.createElement('li');
     todo.textContent = text;
     todolist.appendChild(todo);
